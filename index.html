@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    .container {
+      margin-top: 50px;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    .qr-input {
+      width: 300px;
+      height: 30px;
+      padding: 5px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    
+    .qr-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .qr-result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>QR Code Generator</h1>
+    <input type="text" id="qr-input" class="qr-input" placeholder="Enter text or URL">
+    <br>
+    <button id="generate-button" class="qr-button">Generate QR Code</button>
+    <div id="qr-result" class="qr-result"></div>
+  </div>
+
+  <script>
+    const generateButton = document.getElementById('generate-button');
+    const qrInput = document.getElementById('qr-input');
+    const qrResult = document.getElementById('qr-result');
+
+    generateButton.addEventListener('click', generateQRCode);
+
+    function generateQRCode() {
+      const text = qrInput.value;
+      const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(text)}&size=200x200`;
+
+      qrResult.innerHTML = `<img src="${qrCodeUrl}" alt="QR Code">`;
+    }
+  </script>
+</body>
+</html>
